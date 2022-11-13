@@ -12,7 +12,8 @@ public class SampleController {
     public ResponseEntity<SampleResponseDTO> testThisMethod(@RequestBody SampleRequestDTO request) {
         SampleResponseDTO responseDTO = new SampleResponseDTO();
         responseDTO.setId(request.getId());
-        responseDTO.setPayload(request.getSubObject().getThing());
+        if (request.getSubObject() != null)
+            responseDTO.setPayload(request.getSubObject().getThing());
 
         return ResponseEntity.ok(responseDTO);
     }
